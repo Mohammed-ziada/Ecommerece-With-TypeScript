@@ -11,7 +11,14 @@ import { GridList } from "@components/common";
 const Products = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
+  const cartItems = useAppSelector((state) => state.addToCart.items);
   const { error, loading, records } = useAppSelector((state) => state.products);
+
+  const productInfo = records.map((el) => ({
+    ...el,
+    quantity: cartItems[el.id] || 0,
+  }));
+  // console.log("productInfo", productInfo);
   useEffect(() => {
     dispatch(actProducts(params.prefix as string));
     return () => {
@@ -23,7 +30,7 @@ const Products = () => {
     <Container>
       <Loading status={loading} error={error}>
         <GridList
-          records={records}
+          records={productInfo}
           renderItem={(record) => <Product {...record} />}
         />
       </Loading>

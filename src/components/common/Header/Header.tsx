@@ -3,13 +3,9 @@ import styles from "./styles.module.css";
 import { HeaderBasket } from "../../ecommerce";
 import { NavLink } from "react-router-dom";
 // import { useSelector } from "react-redux";
-import { useAppSelector } from "@store/hooks";
+// import { useAppSelector } from "@store/hooks";
 const { headerContainer, headerLogo } = styles;
 const Header = () => {
-  const cartItems = useAppSelector((state) => state.addToCart.items);
-  const totalQuantity = Object.values(cartItems).reduce((item, current) => {
-    return item + current;
-  }, 0);
   return (
     <header>
       <div className={headerContainer}>
@@ -18,7 +14,7 @@ const Header = () => {
           <Badge bg="info"> Ecom </Badge>
         </h1>
         <div>
-          <HeaderBasket totalQuantity={totalQuantity} />
+          <HeaderBasket />
         </div>
       </div>
       <Navbar

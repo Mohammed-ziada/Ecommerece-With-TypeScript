@@ -7,6 +7,7 @@ import MainLayout from "@layouts/MainLayout/MainLayout";
 import Register from "@pages/Register";
 import Login from "@pages/Login";
 import Error from "@pages/Error";
+import Cart from "@pages/Cart";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
       },
       {
         path: "cart",
-        element: <Register />,
+        element: <Cart />,
       },
     ],
   },
