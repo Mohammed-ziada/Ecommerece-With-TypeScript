@@ -1,10 +1,16 @@
 import { Heading } from "@components/common";
-import { CartItem, SubTotalCartItems } from "@components/ecommerce";
+import { SubTotalCartItems } from "@components/ecommerce";
 import CartItemList from "@components/ecommerce/CartItemLIst/CartItemList";
-import Product from "@components/ecommerce/Products/Product";
+import Empty from "@components/feedback/Empty/Empty";
+import emptyImage from "@assets/Empty.png";
+// import Product from "@components/ecommerce/Products/Product";
 import Loading from "@components/feedback/Loading/Loading";
 // import CartItem from "@components/ecommerce";
-import { actCartItem, changeQuantityAction } from "@store/cart/addToCart";
+import {
+  actCartItem,
+  changeQuantityAction,
+  removeCartItem,
+} from "@store/cart/addToCart";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 // import { c } from "node_modules/vite/dist/node/moduleRunnerTransport.d-DJ_mE5sf";
 import { useCallback, useEffect } from "react";
@@ -27,15 +33,31 @@ const Cart = () => {
     },
     [dispatch]
   );
-
+  const removeHandler = useCallback(
+    (id: string) => {
+      // console.log(id);
+      dispatch(removeCartItem(id));
+    },
+    [dispatch]
+  );
   return (
     <div>
       <Heading>Your Cart</Heading>
       <Loading status={loading} error={error}>
-        <>{/* <CartItemList products={products} /> */}</>
+        {products.length ? (
+          <>
+            <CartItemList
+              products={products}
+              changeQuantity={changeQuantity}
+              removeHandler={removeHandler}
+            />
+            <SubTotalCartItems products={products} />
+          </>
+        ) : (
+          <Empty message="Your Cart Empty" logoSrc={emptyImage} />
+        )}
+        {/* <CartItemList products={products} /> */}
       </Loading>
-      <CartItemList products={products} changeQuantity={changeQuantity} />
-      <SubTotalCartItems />
     </div>
   );
 };

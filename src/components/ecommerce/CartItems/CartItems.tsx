@@ -8,9 +8,19 @@ const { cartItem, product, productImg, productInfo, cartItemSelection } =
   styles;
 type CartItemProps = TProduct & {
   changeQuantity: (id: string, quantity: number) => void;
+  removeHandler: (id: string) => void;
 };
 const CartItem = memo(
-  ({ img, max, price, title, id, quantity, changeQuantity }: CartItemProps) => {
+  ({
+    img,
+    max,
+    price,
+    title,
+    id,
+    quantity,
+    changeQuantity,
+    removeHandler,
+  }: CartItemProps) => {
     const renderOptions = Array(max)
       .fill(0)
       .map((_, index) => {
@@ -24,7 +34,9 @@ const CartItem = memo(
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
       const newQuantity = parseInt(e.target.value, 10);
-      changeQuantity(id, newQuantity);
+      if (id) {
+        changeQuantity(id, newQuantity);
+      }
     };
     console.log("render ");
     return (
@@ -40,6 +52,7 @@ const CartItem = memo(
               variant="secondary"
               style={{ color: "white" }}
               className="mt-auto"
+              onClick={() => id && removeHandler(id)}
             >
               Remove
             </Button>
