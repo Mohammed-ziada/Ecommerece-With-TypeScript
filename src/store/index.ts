@@ -5,6 +5,7 @@ import addToCart from "./cart/addToCart";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/es/persistStore";
+
 import {
   FLUSH,
   REHYDRATE,
@@ -13,14 +14,21 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-// import { PersistConfig } from "redux-persist";
+import wishlist from "./wishlist/wishlistSlice";
 
 // const rootPersistConfig = { key: "root", storage, whitelist: ["addToCart"] };
 const cartPersistConfig = { key: "cart", storage, whitelist: ["items"] };
+const wishlistPersistConfig = {
+  key: "wishlist",
+  storage,
+  whitelist: ["itemId"],
+};
 const rootReducer = combineReducers({
   categories,
   products,
+
   addToCart: persistReducer(cartPersistConfig, addToCart),
+  wishlist: persistReducer(wishlistPersistConfig, wishlist), // Assuming wishlist is a slice reducer
 });
 
 // const persistedReducer = persistReducer(rootPersistConfig, rootReducer);

@@ -1,5 +1,5 @@
 import { TProduct } from "@customTypes/product";
-import Cart from "@pages/Cart";
+// import Cart from "@pages/Cart";
 import CartItem from "../CartItems/CartItems";
 
 interface Iprops {

@@ -13,11 +13,8 @@ const Products = () => {
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector((state) => state.addToCart.items);
   const { error, loading, records } = useAppSelector((state) => state.products);
+  const whislistItemsId = useAppSelector((state) => state.wishlist.itemId);
 
-  const productInfo = records.map((el) => ({
-    ...el,
-    quantity: cartItems[el.id] || 0,
-  }));
   // console.log("productInfo", productInfo);
   useEffect(() => {
     dispatch(actProducts(params.prefix as string));
@@ -26,6 +23,11 @@ const Products = () => {
     };
   }, [dispatch, params]);
 
+  const productInfo = records.map((el) => ({
+    ...el,
+    quantity: cartItems[el.id] || 0,
+    isLiked: whislistItemsId.includes(el.id),
+  }));
   return (
     <Container>
       <Loading status={loading} error={error}>

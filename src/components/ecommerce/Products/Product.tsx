@@ -2,16 +2,27 @@ import { Button, Spinner } from "react-bootstrap";
 import styles from "./styles.module.css";
 import { TProduct } from "@customTypes/product";
 import { useAppDispatch } from "@store/hooks";
-const { product, productImg } = styles;
+const { product, productImg, wishlistBtn } = styles;
 import { addToCart } from "@store/cart/addToCart";
 import { useEffect, useState } from "react";
-
-const Product = ({ id, img, title, price, max, quantity }: TProduct) => {
+import like from "@assets/svg/like.svg";
+import likefill from "@assets/svg/like-fill.svg";
+import { actLikeToggle } from "@store/wishlist/wishlistSlice";
+const Product = ({
+  id,
+  img,
+  title,
+  price,
+  max,
+  quantity,
+  isLiked,
+}: TProduct) => {
   // console.log(max);
   const dispatch = useAppDispatch();
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
   const currentRemaining = max - (quantity ?? 0);
   const quantityReachedToMax = currentRemaining <= 0 ? true : false;
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     if (!isBtnDisabled) {
       return;
@@ -33,10 +44,34 @@ const Product = ({ id, img, title, price, max, quantity }: TProduct) => {
     setIsBtnDisabled(true);
   };
 
+  const handleLikeToggle = (id: string) => {
+    if (isLoading) return;
+    setIsLoading(true);
+    if (id !== undefined) {
+      dispatch(actLikeToggle(id))
+        .unwrap()
+        .then(() => {
+          setIsLoading(false);
+        })
+        .catch(() => {
+          setIsLoading(false);
+        });
+    }
+  };
   return (
     <div className={product}>
+      <div className={wishlistBtn} onClick={() => handleLikeToggle(id)}>
+        {isLoading ? (
+          <Spinner animation="border" size="sm" variant="primary" />
+        ) : isLiked ? (
+          <img src={likefill} alt="like" />
+        ) : (
+          <img src={like} alt="like" />
+        )}
+        {/* <img src={like} alt="like" /> */}
+      </div>
       <div className={productImg}>
-        <img src={img} alt="" />
+        <img src={img} alt="like" />
       </div>
       <h2>{title}</h2>
       <h3>{price} EGP</h3>

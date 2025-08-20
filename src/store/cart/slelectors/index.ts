@@ -12,4 +12,5 @@ const getTotalQuantity = createSelector(
     return totalQuantity;
   }
 );
+
 export { getTotalQuantity };

@@ -1,6 +1,6 @@
 import { Badge, Container, Nav, Navbar } from "react-bootstrap";
 import styles from "./styles.module.css";
-import { HeaderBasket } from "../../ecommerce";
+import { HeaderBasket, HeaderWishlist } from "../../ecommerce";
 import { NavLink } from "react-router-dom";
 // import { useSelector } from "react-redux";
 // import { useAppSelector } from "@store/hooks";
@@ -13,7 +13,8 @@ const Header = () => {
           <span>Our</span>
           <Badge bg="info"> Ecom </Badge>
         </h1>
-        <div>
+        <div className="d-flex align-items-center gap-3">
+          <HeaderWishlist />
           <HeaderBasket />
         </div>
       </div>
