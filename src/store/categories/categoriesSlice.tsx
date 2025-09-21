@@ -16,7 +16,11 @@ const initialState: ICategories = {
 const categoriesSlice = createSlice({
   name: "categories",
   initialState,
-  reducers: {},
+  reducers: {
+    cleanUpRecords: (state) => {
+      state.records = [];
+    },
+  },
   // to excute AsyncThunk
   extraReducers: (builder) => {
     builder.addCase(actCategories.pending, (state) => {
@@ -35,5 +39,6 @@ const categoriesSlice = createSlice({
     });
   },
 });
+export const { cleanUpRecords } = categoriesSlice.actions;
 export { actCategories };
 export default categoriesSlice.reducer;

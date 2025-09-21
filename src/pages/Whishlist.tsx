@@ -6,13 +6,13 @@ import {
   productsFullInfoCleanUp,
 } from "@store/wishlist/wishlistSlice";
 import { useEffect } from "react";
-import { GridList } from "@components/common";
+import { GridList, Heading } from "@components/common";
 import Loading from "@components/feedback/Loading/Loading";
 import Product from "@components/ecommerce/Products/Product";
 
 // import emptyImage from "@assets/Empty.png";
-interface Iprops {}
-const Whishlist = ({}: Iprops) => {
+// interface Iprops {}
+const Whishlist = () => {
   const dispatch = useAppDispatch();
   const { itemId, loading, productsFullInfo, error } = useAppSelector(
     (state) => state.wishlist
@@ -34,6 +34,7 @@ const Whishlist = ({}: Iprops) => {
 
   return (
     <div>
+      <Heading title="Your Wishlist" />
       <Loading status={loading} error={error}>
         <GridList
           records={productInfo}

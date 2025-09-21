@@ -6,7 +6,7 @@ import { actProducts, ProductcleanUp } from "@store/products/productsSlice";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "@components/feedback/Loading/Loading";
-import { GridList } from "@components/common";
+import { GridList, Heading } from "@components/common";
 
 const Products = () => {
   const params = useParams();
@@ -30,6 +30,7 @@ const Products = () => {
   }));
   return (
     <Container>
+      <Heading title={`${params.prefix?.toLocaleUpperCase()} Products `} />
       <Loading status={loading} error={error}>
         <GridList
           records={productInfo}
