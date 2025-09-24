@@ -1,21 +1,24 @@
 import { Badge, Container, Nav, Navbar } from "react-bootstrap";
 import styles from "./styles.module.css";
-import { HeaderBasket, HeaderWishlist } from "../../ecommerce";
+// import { HeaderBasket, HeaderWishlist } from "../../ecommerce";
 import { NavLink } from "react-router-dom";
+import RightHandHeader from "./rightHandHeader/RightHandHeader";
 // import { useSelector } from "react-redux";
 // import { useAppSelector } from "@store/hooks";
 const { headerContainer, headerLogo } = styles;
 const Header = () => {
+  console.log("Header rendered");
   return (
     <header>
       <div className={headerContainer}>
         <h1 className={headerLogo}>
           <span>Our</span>
-          <Badge bg="info"> Ecom </Badge>
+          <Badge bg="info"> eCom </Badge>
         </h1>
         <div className="d-flex align-items-center gap-3">
-          <HeaderWishlist />
-          <HeaderBasket />
+          {/* <HeaderWishlist />
+          <HeaderBasket /> */}
+          <RightHandHeader />
         </div>
       </div>
       <Navbar

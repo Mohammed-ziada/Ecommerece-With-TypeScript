@@ -1,10 +1,10 @@
-.basketContainer {
+.counterContainer {
   position: relative;
   cursor: pointer;
   align-self: flex-end;
 }
 
-.basketQuantity {
+.counterQuantity {
   background-color: #0dcaf0;
   height: 22px;
   width: 22px;

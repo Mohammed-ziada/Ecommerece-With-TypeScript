@@ -1,4 +1,4 @@
-import { TProduct } from "@customTypes/product";
+import { TProduct } from "@customTypes/product.type";
 // import Cart from "@pages/Cart";
 import CartItem from "../CartItems/CartItems";
 

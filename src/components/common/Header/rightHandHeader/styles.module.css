@@ -1,0 +1,5 @@
+.headerRightBar > div:first-of-type {
+  margin-right: 10px;
+  padding-right: 10px;
+  border-right: 1px solid #ccc;
+}

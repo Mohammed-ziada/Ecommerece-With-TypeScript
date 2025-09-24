@@ -1,36 +1,12 @@
-// import Empty from "@components/feedback/Empty/Empty";
-// import Loading from "@components/feedback/Loading/Loading";
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-import {
-  actGetWishlist,
-  productsFullInfoCleanUp,
-} from "@store/wishlist/wishlistSlice";
-import { useEffect } from "react";
 import { GridList, Heading } from "@components/common";
 import Loading from "@components/feedback/Loading/Loading";
 import Product from "@components/ecommerce/Products/Product";
+import useWishlist from "@hooks/useWishlist";
 
 // import emptyImage from "@assets/Empty.png";
 // interface Iprops {}
 const Whishlist = () => {
-  const dispatch = useAppDispatch();
-  const { itemId, loading, productsFullInfo, error } = useAppSelector(
-    (state) => state.wishlist
-  );
-  const cartItems = useAppSelector((state) => state.addToCart.items);
-  useEffect(() => {
-    dispatch(actGetWishlist());
-    return () => {
-      dispatch(productsFullInfoCleanUp());
-    };
-  }, [dispatch]);
-  const productInfo = productsFullInfo
-    .filter((el) => itemId.includes(el.id))
-    .map((el) => ({
-      ...el,
-      quantity: cartItems[el.id] || 0,
-      isLiked: true,
-    }));
+  const { error, loading, productInfo } = useWishlist();
 
   return (
     <div>

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import actCategories from "./act/actCategoriesSlice";
-import { TLoading } from "@customTypes/shared";
-import { TCategory } from "@customTypes/category";
+import { TLoading } from "@customTypes/shared.type";
+import { TCategory } from "@customTypes/category.type";
 interface ICategories {
   records: TCategory[];
   loading: TLoading;

@@ -1,10 +1,10 @@
-import { TProduct } from "@customTypes/product";
+import { TProduct } from "@customTypes/product.type";
 import { createSlice } from "@reduxjs/toolkit";
 import actCartItem from "./act/actCartItem";
 // import { RootState } from "..";
 // import { RootState } from "@reduxjs/toolkit/query";
 import { getTotalQuantity } from "./slelectors";
-import { TLoading } from "@customTypes/shared";
+import { TLoading } from "@customTypes/shared.type";
 // import { act } from "react";
 interface AddToCartState {
   items: { [key: string]: number };

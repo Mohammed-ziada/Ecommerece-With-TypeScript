@@ -1,5 +1,4 @@
-interface Iprops {}
-const Login = ({}: Iprops) => {
+const Login = () => {
   return <div>{`hello Login`}</div>;
 };
 export default Login;

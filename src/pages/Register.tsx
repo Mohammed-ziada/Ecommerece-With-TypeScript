@@ -1,5 +1,4 @@
-interface Iprops {}
-const Register = ({}: Iprops) => {
+const Register = () => {
   return <div>{`hello Register`}</div>;
 };
 export default Register;

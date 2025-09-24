@@ -1,14 +1,16 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "@pages/Home";
-import AboutUs from "@pages/AboutUs";
-import Categories from "@pages/Categories";
-import Products from "@pages/Products";
+import { lazy, Suspense } from "react";
 import MainLayout from "@layouts/MainLayout/MainLayout";
-import Register from "@pages/Register";
-import Login from "@pages/Login";
-import Error from "@pages/Error";
-import Cart from "@pages/Cart";
-import Whishlist from "@pages/Whishlist";
+const Home = lazy(() => import("@pages/Home"));
+const AboutUs = lazy(() => import("@pages/AboutUs"));
+const Categories = lazy(() => import("@pages/Categories"));
+const Products = lazy(() => import("@pages/Products"));
+const Register = lazy(() => import("@pages/Register"));
+const Login = lazy(() => import("@pages/Login"));
+const Error = lazy(() => import("@pages/Error"));
+const Cart = lazy(() => import("@pages/Cart"));
+const Whishlist = lazy(() => import("@pages/Whishlist"));
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,15 +19,27 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: "Categories",
-        element: <Categories />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Categories />
+          </Suspense>
+        ),
       },
       {
         path: "categories/products/:prefix",
-        element: <Products />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Products />
+          </Suspense>
+        ),
         loader: ({ params }) => {
           if (
             typeof params.prefix !== "string" ||
@@ -38,23 +52,43 @@ const router = createBrowserRouter([
       },
       {
         path: "about",
-        element: <AboutUs />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <AboutUs />
+          </Suspense>
+        ),
       },
       {
         path: "login",
-        element: <Login />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Login />
+          </Suspense>
+        ),
       },
       {
         path: "register",
-        element: <Register />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Register />
+          </Suspense>
+        ),
       },
       {
         path: "cart",
-        element: <Cart />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Cart />
+          </Suspense>
+        ),
       },
       {
         path: "wishlist",
-        element: <Whishlist />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Whishlist />
+          </Suspense>
+        ),
       },
     ],
   },

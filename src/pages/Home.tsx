@@ -1,5 +1,4 @@
-interface Iprops {}
-const Home = ({}: Iprops) => {
+const Home = () => {
   return <div>{`hello Home`}</div>;
 };
 export default Home;

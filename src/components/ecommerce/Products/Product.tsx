@@ -1,6 +1,6 @@
 import { Button, Spinner } from "react-bootstrap";
 import styles from "./styles.module.css";
-import { TProduct } from "@customTypes/product";
+import { TProduct } from "@type/index";
 import { useAppDispatch } from "@store/hooks";
 const { product, productImg, wishlistBtn } = styles;
 import { addToCart } from "@store/cart/addToCart";

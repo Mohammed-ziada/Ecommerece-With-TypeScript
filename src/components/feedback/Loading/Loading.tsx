@@ -1,4 +1,4 @@
-import { TLoading } from "@customTypes/shared";
+import { TLoading } from "@customTypes/shared.type";
 
 interface Iprops {
   status: TLoading;
